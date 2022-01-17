@@ -10,6 +10,7 @@ namespace DesignPatterns2022.Creational.Factory
     {
         public void SendNotification(User user)
         {
+            Console.WriteLine("Kullanıcıya mail gönderildi.");
             // Mail gönderme operasyonu.
         }
     }
