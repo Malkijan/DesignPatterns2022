@@ -1,4 +1,5 @@
-﻿using DesignPatterns2022.Creational.Factory;
+﻿using DesignPatterns2022.Creational.AbstractFactory;
+using DesignPatterns2022.Creational.Factory;
 using DesignPatterns2022.Creational.Singleton;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,12 @@ namespace DesignPatterns2022
             INotify notify = notifyFactory.CreateNotify("MAIL");
 
             notify.SendNotification(new User());
+            #endregion
+
+            #region Abstract Factory
+            CustomOperation customOperation = new CustomOperation(new OracleDatabaseFactory());
+            customOperation.RemoveById(1);
+
             #endregion
         }
     }
