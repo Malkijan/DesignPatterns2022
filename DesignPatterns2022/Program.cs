@@ -1,5 +1,6 @@
 ﻿using DesignPatterns2022.Creational.AbstractFactory;
 using DesignPatterns2022.Creational.Factory;
+using DesignPatterns2022.Creational.Prototype;
 using DesignPatterns2022.Creational.Singleton;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,16 @@ namespace DesignPatterns2022
             CustomOperation customOperation = new CustomOperation(new OracleDatabaseFactory());
             customOperation.RemoveById(1);
 
+            #endregion
+
+            #region Prototype
+            Employee ugur = new Employee("Uğur", "Malki");
+            Employee cloneUgur = ugur.Clone();
+
+            // Aynı nesne örneklerini farklı referanslarda tutuyor.
+            // Birbirinin aynısı ve farklı referanslarda olan nesneler elde ettik.
+
+            Console.WriteLine(ugur == cloneUgur);
             #endregion
         }
     }
