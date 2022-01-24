@@ -12,8 +12,9 @@ namespace DesignPatterns2022.Creational.Singleton
         private static object _lockObject = new object();
         /// <summary>
         /// Static bir değişken olmalıdır, referansı tutmak için.
+        /// Multi-thread yapılarda daha da güvenli olması açısından volatile olarak oluştururuz.
         /// </summary>
-        private static Database database;
+        private static volatile Database database;
 
         /// <summary>
         /// Constructor (oluşturucu metotu) private olmalıdır. Bunun amacı nesne oluşumunu tek yerden sağlamak. İstemcinin, new anahtar kelimesini kullanması engellemektir.
