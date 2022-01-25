@@ -1,4 +1,5 @@
 ﻿using DesignPatterns2022.Creational.AbstractFactory;
+using DesignPatterns2022.Creational.Builder;
 using DesignPatterns2022.Creational.Factory;
 using DesignPatterns2022.Creational.Prototype;
 using DesignPatterns2022.Creational.Singleton;
@@ -45,6 +46,19 @@ namespace DesignPatterns2022
             // Birbirinin aynısı ve farklı referanslarda olan nesneler elde ettik.
 
             Console.WriteLine(ugur == cloneUgur);
+            #endregion
+
+            #region Builder
+
+            LessonBuilder lessonBuilder = new NewStudentLessonBuilder();
+
+            LessonDirector lessonDirector = new LessonDirector(lessonBuilder);
+            lessonDirector.Make();
+
+            Lesson lesson = lessonBuilder.GetResult();
+
+            Console.WriteLine($"{lesson.name} - {lesson.price} - {lesson.discountedPrice}");
+
             #endregion
         }
     }
