@@ -3,6 +3,7 @@ using DesignPatterns2022.Creational.Builder;
 using DesignPatterns2022.Creational.Factory;
 using DesignPatterns2022.Creational.Prototype;
 using DesignPatterns2022.Creational.Singleton;
+using DesignPatterns2022.Structural.Flyweight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,20 @@ namespace DesignPatterns2022
 
             Console.WriteLine($"{lesson.name} - {lesson.price} - {lesson.discountedPrice}");
 
+            #endregion
+
+            #region Flyweight
+            BoxFactory boxFactory = new BoxFactory();
+
+            Box blackBox1 = boxFactory.Get(BoxColor.Black);
+            Box blackBox2 = boxFactory.Get(BoxColor.Black);
+            Box blackBox3 = boxFactory.Get(BoxColor.Black);
+            Box blueBox1 = boxFactory.Get(BoxColor.Blue);
+
+            blackBox1.Draw(97, 37);
+            blackBox2.Draw(34, 78);
+            blackBox3.Draw(74, 193);
+            blueBox1.Draw(1, 4);
             #endregion
         }
     }
