@@ -4,6 +4,7 @@ using DesignPatterns2022.Creational.Factory;
 using DesignPatterns2022.Creational.Prototype;
 using DesignPatterns2022.Creational.Singleton;
 using DesignPatterns2022.Structural.Flyweight;
+using DesignPatterns2022.Structural.Adapter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +35,8 @@ namespace DesignPatterns2022
             #endregion
 
             #region Abstract Factory
-            CustomOperation customOperation = new CustomOperation(new OracleDatabaseFactory());
-            customOperation.RemoveById(1);
+            //CustomOperation customOperation = new CustomOperation(new OracleDatabaseFactory());
+            //customOperation.RemoveById(1);
 
             #endregion
 
@@ -74,6 +75,12 @@ namespace DesignPatterns2022
             blackBox2.Draw(34, 78);
             blackBox3.Draw(74, 193);
             blueBox1.Draw(1, 4);
+            #endregion
+
+            #region Adapter
+            Structural.Adapter.CustomOperation customOperationAdapter = new Structural.Adapter.CustomOperation(new CustomSerializerAdapter());
+            string serializedObject = customOperationAdapter.SerializeObject(new object());
+            Console.WriteLine(serializedObject);
             #endregion
         }
     }
