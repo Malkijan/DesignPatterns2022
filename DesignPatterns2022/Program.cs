@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DesignPatterns2022.Structural.Composite;
+using DesignPatterns2022.Structural.Facade;
 
 namespace DesignPatterns2022
 {
@@ -116,6 +117,14 @@ namespace DesignPatterns2022
             //             ----iPhone 5 Telefon
             //             --Samsung Telefonlar
             //             ---Samsung Galaxy Telefon
+
+            #endregion
+
+            #region Facade
+            Customer malki = new Customer("Ugur", "Malki");
+
+            CreditCardManager creditCardFacade = new CreditCardManager();
+            creditCardFacade.CreateCreditCard(malki);
 
             #endregion
         }
