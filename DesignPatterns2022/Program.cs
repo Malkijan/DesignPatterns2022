@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DesignPatterns2022.Structural.Composite;
 using DesignPatterns2022.Structural.Facade;
+using DesignPatterns2022.Structural.Proxy;
 
 namespace DesignPatterns2022
 {
@@ -126,6 +127,12 @@ namespace DesignPatterns2022
             CreditCardManager creditCardFacade = new CreditCardManager();
             creditCardFacade.CreateCreditCard(malki);
 
+            #endregion
+
+            #region Proxy
+            Person john = new Person("12345678901", "İstanbul-Beşiktaş Dere Tepe Sok.");
+            IOrderableMask orderableMask = new AuthenticatableMaskOrderProxy();
+            orderableMask.CreateOrder(john);
             #endregion
         }
     }

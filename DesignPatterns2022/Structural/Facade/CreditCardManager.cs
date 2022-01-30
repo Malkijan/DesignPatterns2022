@@ -13,13 +13,6 @@ namespace DesignPatterns2022.Structural.Facade
         {
             // Parametre olarak gelen kullanıcıya ait kredi kartı oluşturma işleminin yapıldığı yer
             
-            CreditCardManager creditCardManager = new CreditCardManager();
-            BlackListService blackListService = new BlackListService();
-
-            if (blackListService.CheckEmployeeIsTheBlackList(customer))
-            {
-                creditCardManager.CreateCreditCard(customer);
-            }
         }
     }
 }
