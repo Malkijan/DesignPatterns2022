@@ -14,6 +14,7 @@ using DesignPatterns2022.Structural.Composite;
 using DesignPatterns2022.Structural.Facade;
 using DesignPatterns2022.Structural.Proxy;
 using DesignPatterns2022.Structural.Decorator;
+using DesignPatterns2022.Structural.Bridge;
 
 namespace DesignPatterns2022
 {
@@ -147,6 +148,18 @@ namespace DesignPatterns2022
             //      data.sql readed.
             //      Data compressed.
             //      Compressed data was written to data.sql.
+            #endregion
+
+            #region Bridge
+            IMessageSender textMessageSender = new TextMessageSender();
+            Message textMessage = new TextMessage(textMessageSender);
+            textMessage.Send();
+            // output: TextMessageSender: Sending text message...
+
+            IMessageSender emailMessageSender = new EmailMessageSender();
+            Message emailMessage = new EmailMessage(emailMessageSender);
+            emailMessage.Send();
+            // output: EmailMessageSender: Sending email message...
             #endregion
         }
     }
