@@ -15,6 +15,7 @@ using DesignPatterns2022.Structural.Facade;
 using DesignPatterns2022.Structural.Proxy;
 using DesignPatterns2022.Structural.Decorator;
 using DesignPatterns2022.Structural.Bridge;
+using DesignPatterns2022.Behavioral.Strategy;
 
 namespace DesignPatterns2022
 {
@@ -160,6 +161,18 @@ namespace DesignPatterns2022
             Message emailMessage = new EmailMessage(emailMessageSender);
             emailMessage.Send();
             // output: EmailMessageSender: Sending email message...
+            #endregion
+
+            #region Strategy
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.AddItem(new Item("123456", 80));
+            shoppingCart.AddItem(new Item("123457", 20));
+
+            shoppingCart.SetPaymentMethod(new PaypalPayment("ugur@gmail.com", "123456"));
+            shoppingCart.Pay();
+
+            shoppingCart.SetPaymentMethod(new CreditCardPayment("ugur", "1234 1231 1234 54", "234", "10/2030"));
+            shoppingCart.Pay();
             #endregion
         }
     }
