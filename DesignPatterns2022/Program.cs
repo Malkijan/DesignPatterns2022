@@ -16,6 +16,7 @@ using DesignPatterns2022.Structural.Proxy;
 using DesignPatterns2022.Structural.Decorator;
 using DesignPatterns2022.Structural.Bridge;
 using DesignPatterns2022.Behavioral.Strategy;
+using DesignPatterns2022.Behavioral.Command;
 
 namespace DesignPatterns2022
 {
@@ -173,6 +174,23 @@ namespace DesignPatterns2022
 
             shoppingCart.SetPaymentMethod(new CreditCardPayment("ugur", "1234 1231 1234 54", "234", "10/2030"));
             shoppingCart.Pay();
+            #endregion
+
+            #region Command
+            StockManager stockManager = new StockManager("IPhone",200);
+            BuyStock buyStock = new BuyStock(stockManager);
+            SellStock sellStock = new SellStock(stockManager);
+
+            StockController stockController = new StockController();
+            stockController.TakeOrder(buyStock);
+            stockController.TakeOrder(sellStock);
+            stockController.TakeOrder(sellStock);
+
+            stockController.PlaceOrders();
+            // output:
+            //  Stock: iPhone, 200 bought!
+            //  Stock: iPhone, 200 sold!
+            //  Stock: iPhone, 200 sold!
             #endregion
         }
     }
