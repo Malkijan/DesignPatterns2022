@@ -17,6 +17,7 @@ using DesignPatterns2022.Structural.Decorator;
 using DesignPatterns2022.Structural.Bridge;
 using DesignPatterns2022.Behavioral.Strategy;
 using DesignPatterns2022.Behavioral.Command;
+using DesignPatterns2022.Behavioral.Iterator;
 
 namespace DesignPatterns2022
 {
@@ -48,8 +49,8 @@ namespace DesignPatterns2022
             #endregion
 
             #region Prototype
-            Employee ugur = new Employee("Uğur", "Malki");
-            Employee cloneUgur = ugur.Clone();
+            Creational.Prototype.Employee ugur = new Creational.Prototype.Employee("Uğur", "Malki");
+            Creational.Prototype.Employee cloneUgur = ugur.Clone();
 
             // Aynı nesne örneklerini farklı referanslarda tutuyor.
             // Birbirinin aynısı ve farklı referanslarda olan nesneler elde ettik.
@@ -94,7 +95,7 @@ namespace DesignPatterns2022
             ProductCatalog items = new ProductCatalog("Ürünler");
 
             ProductCatalog phones = new ProductCatalog("Telefonlar");
-            
+
             ProductCatalog iPhone = new ProductCatalog("IPhone Telefonlar");
             ProductCatalog samsung = new ProductCatalog("Samsung Telefonlar");
 
@@ -177,7 +178,7 @@ namespace DesignPatterns2022
             #endregion
 
             #region Command
-            StockManager stockManager = new StockManager("IPhone",200);
+            StockManager stockManager = new StockManager("IPhone", 200);
             BuyStock buyStock = new BuyStock(stockManager);
             SellStock sellStock = new SellStock(stockManager);
 
@@ -191,6 +192,30 @@ namespace DesignPatterns2022
             //  Stock: iPhone, 200 bought!
             //  Stock: iPhone, 200 sold!
             //  Stock: iPhone, 200 sold!
+            #endregion
+
+            #region Iterator
+            EmployeeListAggregate employeeListAggregate = new EmployeeListAggregate();
+
+            Behavioral.Iterator.Employee snoop = new Behavioral.Iterator.Employee(1, "Snoop", "Dogg");
+            Behavioral.Iterator.Employee dre = new Behavioral.Iterator.Employee(2, "Dr", "Dre");
+            Behavioral.Iterator.Employee kanye = new Behavioral.Iterator.Employee(3, "Kanye", "West");
+
+            employeeListAggregate.Add(snoop);
+            employeeListAggregate.Add(dre);
+            employeeListAggregate.Add(kanye);
+
+            var iterator = employeeListAggregate.Iterator();
+
+            while (iterator.HasNext())
+            {
+                Behavioral.Iterator.Employee currentEmployee = iterator.GetCurrentItem();
+                Console.WriteLine($"{currentEmployee.firstName} {currentEmployee.lastName}");
+            }
+            // output:
+            //  Snoop Dogg
+            //  Dr Dre
+            //  Kanye West
             #endregion
         }
     }
