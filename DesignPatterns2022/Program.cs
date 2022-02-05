@@ -19,6 +19,7 @@ using DesignPatterns2022.Behavioral.Strategy;
 using DesignPatterns2022.Behavioral.Command;
 using DesignPatterns2022.Behavioral.Iterator;
 using DesignPatterns2022.Behavioral.TemplateMethod;
+using DesignPatterns2022.Behavioral.Observer;
 
 namespace DesignPatterns2022
 {
@@ -235,6 +236,31 @@ namespace DesignPatterns2022
             //  Method worked: GetDataOfLastWeek
             //  Method worked: AnalyzeData
             //  HTML exported.
+            #endregion
+
+            #region Observer
+            // Güncellemeden etkilenecek olan sınıf örnekleri.
+            IObserverUser mehmet = new ObserverUser();
+            IObserverUser ayse = new ObserverUser();
+            IObserverUser deniz = new ObserverUser();
+            IObserverUser sercan = new ObserverUser();
+
+            // İzlenecek olan sınıf örneği.
+            Samsung samsungPhone = new Samsung();
+
+            // İzlenecek olan sınıfa etkilenecek olan nesnelerin atanması.
+            samsungPhone.AddObserver(mehmet);
+            samsungPhone.AddObserver(ayse);
+            samsungPhone.AddObserver(deniz);
+            samsungPhone.AddObserver(sercan);
+
+            samsungPhone.ChangePrice();
+
+            // output:
+            //  Samsung updated. Message: Samsung's price updated.
+            //  Samsung updated. Message: Samsung's price updated.
+            //  Samsung updated. Message: Samsung's price updated.
+            //  Samsung updated. Message: Samsung's price updated.
             #endregion
         }
     }
