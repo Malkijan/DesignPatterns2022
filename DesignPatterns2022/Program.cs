@@ -18,6 +18,7 @@ using DesignPatterns2022.Structural.Bridge;
 using DesignPatterns2022.Behavioral.Strategy;
 using DesignPatterns2022.Behavioral.Command;
 using DesignPatterns2022.Behavioral.Iterator;
+using DesignPatterns2022.Behavioral.TemplateMethod;
 
 namespace DesignPatterns2022
 {
@@ -216,6 +217,24 @@ namespace DesignPatterns2022
             //  Snoop Dogg
             //  Dr Dre
             //  Kanye West
+            #endregion
+
+            #region TemplateMethod
+            DataAnalyzerBase dataAnalyzer;
+
+            dataAnalyzer = new XmlDataAnalyzer();
+            dataAnalyzer.AnalyzeDataOfLastWeek();
+            // output:
+            //  Method worked: GetDataOfLastWeek
+            //  Method worked: AnalyzeData
+            //  XML exported.
+
+            dataAnalyzer = new HtmlDataAnalyzer();
+            dataAnalyzer.AnalyzeDataOfLastWeek();
+            // output:
+            //  Method worked: GetDataOfLastWeek
+            //  Method worked: AnalyzeData
+            //  HTML exported.
             #endregion
         }
     }
