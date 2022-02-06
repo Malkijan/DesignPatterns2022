@@ -21,6 +21,7 @@ using DesignPatterns2022.Behavioral.Iterator;
 using DesignPatterns2022.Behavioral.TemplateMethod;
 using DesignPatterns2022.Behavioral.Observer;
 using DesignPatterns2022.Behavioral.Memento;
+using DesignPatterns2022.Behavioral.Mediator;
 
 namespace DesignPatterns2022
 {
@@ -42,7 +43,7 @@ namespace DesignPatterns2022
 
             INotify notify = notifyFactory.CreateNotify("MAIL");
 
-            notify.SendNotification(new User());
+            notify.SendNotification(new Creational.Factory.User());
             #endregion
 
             #region Abstract Factory
@@ -301,6 +302,43 @@ namespace DesignPatterns2022
             //  text: asmin, cursor position: 5
             //  text: asmi, cursor position: 4
             //  text: asm, cursor position: 3
+            #endregion
+
+            #region Mediator
+            IChatRoomMediator chatRoom = new ChatRoomMediator();
+
+            // Sohbet odasına dahil olacak kullanıcıların oluşturulması.
+            // Ortak Mediator arayüzü ile haberleşmesi.
+            Behavioral.Mediator.User yusuf = new ChatUser(chatRoom);
+            yusuf.id = 1;
+            yusuf.name = "Yusuf";
+
+            Behavioral.Mediator.User sema = new ChatUser(chatRoom);
+            sema.id = 2;
+            sema.name = "Semanur";
+
+            Behavioral.Mediator.User derya = new ChatUser(chatRoom);
+            derya.id = 3;
+            derya.name = "Derya";
+
+            Behavioral.Mediator.User aleyna = new ChatUser(chatRoom);
+            aleyna.id = 4;
+            aleyna.name = "Aleyna";
+
+            // Mediator içerisindeki kullanıcı listesine atama işlemleri.
+            chatRoom.AddUserInRoom(yusuf);
+            chatRoom.AddUserInRoom(sema);
+            chatRoom.AddUserInRoom(derya);
+            chatRoom.AddUserInRoom(aleyna);
+
+            yusuf.SendMessage("Selam?", sema.id);
+            sema.SendMessage("Nasılsın?", yusuf.id);
+
+            // output:
+            //  Yusuf send new message to: 2 id user.
+            //  Semanur received new message.Message: Selam?
+            //  Semanur send new message to: 1 id user.
+            //  Yusuf received new message.Message: Nasılsın?
             #endregion
         }
     }
