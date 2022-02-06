@@ -20,6 +20,7 @@ using DesignPatterns2022.Behavioral.Command;
 using DesignPatterns2022.Behavioral.Iterator;
 using DesignPatterns2022.Behavioral.TemplateMethod;
 using DesignPatterns2022.Behavioral.Observer;
+using DesignPatterns2022.Behavioral.Memento;
 
 namespace DesignPatterns2022
 {
@@ -261,6 +262,45 @@ namespace DesignPatterns2022
             //  Samsung updated. Message: Samsung's price updated.
             //  Samsung updated. Message: Samsung's price updated.
             //  Samsung updated. Message: Samsung's price updated.
+            #endregion
+
+            #region Memento
+            TextOriginator textOriginator = new TextOriginator();
+
+            textOriginator.Text = "asm";
+            textOriginator.CursorPosition = 3;
+
+            // Anlık durum yığına ekleniyor.
+            textOriginator.Save();
+
+            textOriginator.Text = "asmi";
+            textOriginator.CursorPosition = 4;
+
+            // Anlık durum yığına ekleniyor.
+            textOriginator.Save();
+
+            textOriginator.Text = "asmin";
+            textOriginator.CursorPosition = 5;
+
+            // Anlık durum yığına ekleniyor.
+            textOriginator.Save();
+
+            // Yığındaki bir önceki duruma geçiyor.
+            textOriginator.Undo();
+            Console.WriteLine(textOriginator.ToString());
+
+            // Yığındaki bir önceki duruma geçiyor.
+            textOriginator.Undo();
+            Console.WriteLine(textOriginator.ToString());
+
+            // Yığındaki bir önceki duruma geçiyor.
+            textOriginator.Undo();
+            Console.WriteLine(textOriginator.ToString());
+
+            //output:
+            //  text: asmin, cursor position: 5
+            //  text: asmi, cursor position: 4
+            //  text: asm, cursor position: 3
             #endregion
         }
     }
