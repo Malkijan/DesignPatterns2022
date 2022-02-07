@@ -22,6 +22,7 @@ using DesignPatterns2022.Behavioral.TemplateMethod;
 using DesignPatterns2022.Behavioral.Observer;
 using DesignPatterns2022.Behavioral.Memento;
 using DesignPatterns2022.Behavioral.Mediator;
+using DesignPatterns2022.Behavioral.ChainOfResponsibility;
 
 namespace DesignPatterns2022
 {
@@ -339,6 +340,22 @@ namespace DesignPatterns2022
             //  Semanur received new message.Message: Selam?
             //  Semanur send new message to: 1 id user.
             //  Yusuf received new message.Message: Nasılsın?
+            #endregion
+
+            #region Chain Of Responsibility
+            Image image = new Image("tatil-fotom", "JPG");
+
+            JPEGHandler jpegHandler = new JPEGHandler();
+            JPGHandler jpgHandler = new JPGHandler();
+            CustomHandler customHandler = new CustomHandler();
+
+            // Zincirlerin birbirleri ile bağlantısının yapıldığı yerdir.
+            // JPEG bu işlemi gerçekleştiremezse JPG'e aktarır o da Custom'a aktarır.
+
+            jpegHandler.SetNextHandler(jpgHandler);
+            jpgHandler.SetNextHandler(customHandler);
+
+            jpegHandler.HandleRequest(image); // output: JPG to PNG
             #endregion
         }
     }
