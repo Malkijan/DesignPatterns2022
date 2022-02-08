@@ -23,6 +23,7 @@ using DesignPatterns2022.Behavioral.Observer;
 using DesignPatterns2022.Behavioral.Memento;
 using DesignPatterns2022.Behavioral.Mediator;
 using DesignPatterns2022.Behavioral.ChainOfResponsibility;
+using DesignPatterns2022.Behavioral.Visitor;
 
 namespace DesignPatterns2022
 {
@@ -356,6 +357,30 @@ namespace DesignPatterns2022
             jpgHandler.SetNextHandler(customHandler);
 
             jpegHandler.HandleRequest(image); // output: JPG to PNG
+            #endregion
+
+            #region Visitor
+            Book earth = new Encyclopedia();
+
+            earth.name = "Big Earth";
+            earth.author = "Jose S. Massey";
+            earth.categoryName = "Encyclopedia";
+
+            Book daily = new Magazine();
+
+            daily.name = "Daily Magazine";
+            daily.author = "Wayne D. Eakin";
+            daily.categoryName = "Magazine";
+
+            IBookExportVisitor xmlExportVisitor = new XmlExportVisitor();
+            IBookExportVisitor jsonExportVisitor = new JsonExportVisitor();
+
+            earth.Accept(xmlExportVisitor);
+            daily.Accept(jsonExportVisitor);
+
+            // output:
+            //  Big Earth!exported by XmlExportVisitor
+            //  Daily Magazine exported by JsonExportVisitor
             #endregion
         }
     }
