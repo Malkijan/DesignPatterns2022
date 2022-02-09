@@ -24,6 +24,7 @@ using DesignPatterns2022.Behavioral.Memento;
 using DesignPatterns2022.Behavioral.Mediator;
 using DesignPatterns2022.Behavioral.ChainOfResponsibility;
 using DesignPatterns2022.Behavioral.Visitor;
+using DesignPatterns2022.Behavioral.State;
 
 namespace DesignPatterns2022
 {
@@ -381,6 +382,18 @@ namespace DesignPatterns2022
             // output:
             //  Big Earth!exported by XmlExportVisitor
             //  Daily Magazine exported by JsonExportVisitor
+            #endregion
+
+            #region State
+            VendingMachine vendingMachine = new VendingMachine();
+            vendingMachine.RequestProduct("Covid-19 Maske", 5);
+
+            // output:
+            //  InitializeState: Ön hazırlıklar yapılıyor.
+            //  WaitingState: Otomata herhangi bir aksiyon bekliyor.
+            //  PreparingState: İstenilen ürün hazırlanıyor.Lütfen bekleyiniz
+            //  DeliveryState: Ürün teslim ediliyor.
+            //  WaitingState: Otomata herhangi bir aksiyon bekliyor.
             #endregion
         }
     }
